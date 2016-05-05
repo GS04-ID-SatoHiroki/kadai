@@ -6,19 +6,19 @@ include ("../../jpgraph/src/jpgraph_pie.php");
 
 //include connection script to database:
 include ("connection.php");
-$result = mysqli_query($dbc, "SELECT gender, COUNT(gender) as 'amount' FROM users GROUP BY gender");
+$result = mysqli_query($dbc, "SELECT age, COUNT(age) as 'amount' FROM users GROUP BY age ORDER BY age DESC");
 
 $num = array();
 $leg = array();
-$colors = array('#8f004a', '#004a8f');
 while($row = mysqli_fetch_object($result)){
     array_push($num, intval($row->amount));
-    array_push($leg, $row->gender);
+    array_push($leg, $row->age);
+//  'colors' => array('#0000FF', '#6600FF', '#CC00FF', '#66CC00', '#FFCC00')
+    
 }
-$data = array("leg" => $leg, "num" => $num, "colors" => $colors);
+$data = array("leg" => $leg,"num" => $num);
 //var_dump($data["num"]);
-//var_dump($data["leg"]);
-//var_dump($data["colors"]);die;
+//var_dump($data["leg"]);die;
 
 //function dispKekka($var, $var_num){
 //    print('変数に格納されている値は'.$var.'です<br>');
@@ -41,7 +41,7 @@ $graph = new PieGraph(300, 200, "auto");
 //calls bellow are optional
 $graph->SetFrame(true);
 $graph->SetShadow();
-$graph->title->Set("男女比");
+$graph->title->Set("年齢構成");
 $graph->title->SetFont(FF_GOTHIC, FS_NORMAL, 16);
 //$graph->title->SetColor(array(128, 0, 0));
 $graph->title->Align("center","top");
@@ -51,7 +51,6 @@ $graph->title->Align("center","top");
 //Graph data
 $pieplot = new PiePlot($data["num"]);
 $pieplot->SetLegends($data["leg"]);
-$pieplot->setSliceColors($data["colors"]);
 $pieplot->SetStartAngle(90);
 
 $graph->Add($pieplot);

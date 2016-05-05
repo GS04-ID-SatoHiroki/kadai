@@ -80,6 +80,7 @@ mysqli_close($dbc);
 </head>
 <body>
     <img src="result_graph_pie.php">
+    <img src="result_graph_pie_age.php">
     <img src="result_graph_bar.php">
 </body>
 </html>
