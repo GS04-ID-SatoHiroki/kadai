@@ -45,7 +45,7 @@ $password = $_POST['password'];
 </head>
 
 <body>
-    <h1>アンケートフォーム</h1>
+    <h1>登録フォーム</h1>
     <div>ただいまの時刻は <?php date_default_timezone_set('Asia/Tokyo'); echo date("Y/m/d H:i:s") ?> です。</div>
     <form method="post" action="input_data.php" data-validate>
         <table>
@@ -123,7 +123,7 @@ $password = $_POST['password'];
         <div><input type="submit" id="submit" disabled></div>
     </form>
     
-    <a href="output_data.php">すべてのアンケート結果を確認する</a>
+    <a href="output_data.php">すべての登録レコードを確認</a>
     
     <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
     <script>

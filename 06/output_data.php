@@ -50,7 +50,9 @@ if($num > 0 ){
     </tr>
     ";
     };
-
+    
+    include("navibar.php");
+    
 }else{
     
     echo "現在登録がありません。";
@@ -61,25 +63,6 @@ mysqli_close($dbc);
 
 ?>
 
-    <!--
-<?php
-function htmlEnc($str){
-    return htmlspecialchars($str, ENT_QUOTES);
-}
-
-$name = $_POST["name"];
-$mail = $_POST["mail"];
-$tel = $_POST["tel"];
-$comment = $_POST["comments"];
-
-echo $name.' '.$mail.' '.$tel.' '.$comment;
-
-if($name == ""){
-    $name = "未入力";
-}
-
-?>-->
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -89,6 +72,6 @@ if($name == ""){
 </head>
 <body>
     <div><a href="input_data.php">フォーム画面に戻る</a></div>
-
+    <img src="result_graph_pie.php">
 </body>
 </html>

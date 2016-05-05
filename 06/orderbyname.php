@@ -37,7 +37,8 @@ if($num > 0 ){
     //use while loop to create an associative array with values registration_date, lastname,firstaname
     while($row = mysqli_fetch_array($r)){
     
-    echo "<tr>
+    echo "
+    <tr>
     <td align='left'><a href='edit.php?user_id=".$row['id']."&fname=".$row['first_name']."&lname=".$row['last_name']."&email=".$row['email']."&comment=".$row['comments']."'>編集</a></td>
     <td align='left'><a href='delete.php?user_id=".$row['id']."&fname=".$row['first_name']."&lname=".$row['last_name']."&email=".$row['email']."'>削除</a></td>
     <td align='left'>".$row['id']."</td>
@@ -46,9 +47,11 @@ if($num > 0 ){
     <td align='left'>".$row['comments']."</td>
     <td align='left'>".$row['dr']."</td>
     <td align='left'>".$row['dr1']."</td>
-    </tr>";
-
-}
+    </tr>
+    ";
+    };
+    
+    include("navibar.php");
     
 }else{
     
@@ -88,8 +91,6 @@ if($name == ""){
 </head>
 <body>
     <div><a href="input_data.php">フォーム画面に戻る</a></div>
-
-<?php include("navibar.php"); ?>
 
 </body>
 </html>
