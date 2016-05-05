@@ -1,6 +1,8 @@
 <?php 
 //CRUD - Create, Read, Update and DELETE
 
+include ("ChromePhp.php");
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     
 $first_name = $_POST['first_name'];
@@ -9,14 +11,15 @@ $email = $_POST['email'];
 $tel = $_POST['tel'];
 $gender = $_POST['gender'];
 $age = $_POST['age'];
+$score = $_POST['score'];
 $comments = $_POST['comments'];
 $password = $_POST['password'];
     
-    if(!empty($first_name) && !empty($last_name) && !empty($email) && !empty($tel) && !empty($gender) && !empty($age) && !empty($comments) && !empty($password)){
+    if(!empty($first_name) && !empty($last_name) && !empty($email) && !empty($tel) && !empty($gender) && !empty($age) && !empty($score) && !empty($comments) && !empty($password)){
         
         include('connection.php');
         
-        mysqli_query($dbc, "INSERT INTO users(first_name,last_name,email,tel,gender,age,comments,password,registration_date) VALUES('$first_name','$last_name','$email','$tel','$gender','$age','$comments','$password',now())");
+        mysqli_query($dbc, "INSERT INTO users(first_name,last_name,email,tel,gender,age,score,comments,password,registration_date) VALUES('$first_name','$last_name','$email','$tel','$gender','$age','$score','$comments','$password',now())");
         
         $registered = mysqli_affected_rows($dbc);
         
@@ -29,7 +32,7 @@ $password = $_POST['password'];
     }
 }else{
     
-    echo "<h2>フォームを入力してください。</h2>";
+    ChromePhp::log('データベースにアクセス中');
     
 }
 
@@ -102,6 +105,15 @@ $password = $_POST['password'];
 
             </tr>
             <tr>
+                <th>評価</th>
+                <td class="inputarea">
+                    <div id="score"></div>
+                </td>
+                <td class="check">
+                </td>
+
+            </tr>
+            <tr>
                 <th>コメント</th>
                 <td class="inputarea">
                     <textarea name="comments" id="comments" rows=5 cols=40 maxlength="200" onchange="register(this)" required></textarea>
@@ -126,7 +138,21 @@ $password = $_POST['password'];
     <a href="output_data.php">すべての登録レコードを確認</a>
     
     <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+    <script src="./js/raty-master/lib/jquery.raty.js"></script>
+    
     <script>
+
+        //5段階評価jquery
+        $(function raty() {
+            $.fn.raty.defaults.path = "./js/raty-master/lib/images";
+            $("#score").raty({
+                number : 5,
+                score : 0,
+                hints : ['1', '2', '3', '4', '5'],
+            });
+            });
+
+        //入力チェック
         function register($this) {
             if( $($this).val() == ""){
                 $($this).parent().next().html('<p id="check_error" class="button">未入力</p>');

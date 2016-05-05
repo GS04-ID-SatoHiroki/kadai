@@ -14,10 +14,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $e_fname = mysqli_real_escape_string($dbc, trim($_POST['first_name']));
     $e_lname = mysqli_real_escape_string($dbc, trim($_POST['last_name']));
     $e_email = mysqli_real_escape_string($dbc, trim($_POST['email']));
+    $e_score = mysqli_real_escape_string($dbc, trim($_POST['score']));
     $e_comments = mysqli_real_escape_string($dbc, trim($_POST['comments']));
     //edit user where id = $user_id:
 
-    $q = mysqli_query($dbc, "UPDATE users SET first_name='$e_fname', last_name='$e_lname', email='$e_email', comments='$e_comments', update_date=now() WHERE id='$id_user'");
+    $q = mysqli_query($dbc, "UPDATE users SET first_name='$e_fname', last_name='$e_lname', email='$e_email', score='$e_score', comments='$e_comments', update_date=now() WHERE id='$id_user'");
     $r = mysqli_query($dbc, $q);
     
     echo "ユーザー情報の変更に成功しました。";
@@ -65,6 +66,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 <th>Email</th>
                 <td>
                     <input type="text" name="email" value="<?php echo $_GET['email']; ?>">
+                </td>
+            <tr>            <tr>
+                <th>Email</th>
+                <td>
+                    <input type="text" name="score" value="<?php echo $_GET['score']; ?>">
                 </td>
             <tr>
                 <th>コメント</th>

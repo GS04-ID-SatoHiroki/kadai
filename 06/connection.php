@@ -1,5 +1,7 @@
 <?php
 
+include ("ChromePhp.php");
+
 $hostname = "localhost";
 $username = "root";
 $password1 = "";
@@ -13,6 +15,6 @@ $dbc = mysqli_connect($hostname, $username, $password1, $dbname) OR die("デー�
 
 mysqli_set_charset($dbc, "utf8");
 
-echo "<p>".$dbname."に接続中</p>";
+ChromePhp::log($dbname."に接続中");
 
 ?>
