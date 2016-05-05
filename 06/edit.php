@@ -41,7 +41,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 </head>
 
 <body>
-    <h3>レコード編集</h3>
+    <h1>レコード編集</h1>
     <form method="post" action="edit.php">
         <table>
             <tr>
@@ -67,11 +67,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 <td>
                     <input type="text" name="email" value="<?php echo $_GET['email']; ?>">
                 </td>
-            <tr>            <tr>
-                <th>Email</th>
+            </tr>
+            <tr>
+                <th>評価</th>
                 <td>
                     <input type="text" name="score" value="<?php echo $_GET['score']; ?>">
                 </td>
+            </tr>
             <tr>
                 <th>コメント</th>
                 <td>
@@ -84,6 +86,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         </div>
         <p><a href="output_data.php" </a>レコード一覧に戻る</p>
     </form>
+
+<?php include("navibar.php"); ?>
+
 </body>
 
 </html>

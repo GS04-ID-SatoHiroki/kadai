@@ -1,7 +1,7 @@
-<?php 
-//CRUD - Create, Read, Update and DELETE
+<?php //CRUD - Create, Read, Update and DELETE
 
-include ("ChromePhp.php");
+//include ("ChromePhp.php");
+include ("navibar.php");
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     
@@ -32,7 +32,7 @@ $password = $_POST['password'];
     }
 }else{
     
-    ChromePhp::log('データベースにアクセス中');
+//ChromePhp::log("データベースに接続中");
     
 }
 
@@ -134,9 +134,8 @@ $password = $_POST['password'];
         </table>
         <div><input type="submit" id="submit" disabled></div>
     </form>
-    
-    <a href="output_data.php">すべての登録レコードを確認</a>
-    
+
+<!--  script  -->
     <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
     <script src="./js/raty-master/lib/jquery.raty.js"></script>
     

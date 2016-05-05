@@ -35,7 +35,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 </head>
 
 <body>
-    <h3>レコード削除</h3>
+    <h1>レコード削除</h1>
     <form method="post" action="delete.php">
         <table>
             <tr>

@@ -13,6 +13,7 @@ h1 {
 
 table {
     margin: 0 auto;
+    width: 75%;
     border-collapse: separate;
 }
 
@@ -27,6 +28,7 @@ th {
 
 td {
     width: 100px;
+    text-align: center;
     background: #f8f8f8;
 }
 
@@ -44,6 +46,17 @@ div {
 /*テキストエリア*/
 
 input[type="text"] {
+    padding: 0;
+    width: 200px;
+    height: 30px;
+    border: 1px solid #ccc;
+    line-height: 30px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+input[type="password"] {
     padding: 0;
     width: 200px;
     height: 30px;

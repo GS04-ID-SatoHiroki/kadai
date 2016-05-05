@@ -1,5 +1,8 @@
 <?php
 
+//avoid error notices, display only warnings:
+error_reporting(0);
+
 //check if user submitted form:
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     
@@ -68,6 +71,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             echo $msg."<br>";
         }
     }
+}else{
+    
+    echo "ログインしてください。";
+    
 }
 
 ?>
@@ -86,7 +93,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     <form method="post" action="password.php">
         <table>
             <tr>
-                <th>メール</th>
+                <th>メールアドレス</th>
                 <td>
                     <input type="text" name="email" size="20" maxlength="50" value="<?php if(isset($_POST['email'])){echo $_POST['email'];} ?>">
                 </td>
