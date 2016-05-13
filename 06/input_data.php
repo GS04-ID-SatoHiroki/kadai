@@ -49,6 +49,7 @@ $password = $_POST['password'];
 
 <body>
     <h1>登録フォーム</h1>
+    <h2>G'sの評価を教えてください。</h2>
     <div>ただいまの時刻は <?php date_default_timezone_set('Asia/Tokyo'); echo date("Y/m/d H:i:s") ?> です。</div>
     <form method="post" action="input_data.php" data-validate>
         <table>
