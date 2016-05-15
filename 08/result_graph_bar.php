@@ -6,13 +6,13 @@ include ("../../jpgraph/src/jpgraph_bar.php");
 
 //include connection script to database:
 include ("connection.php");
-$result = mysqli_query($dbc, "SELECT score, COUNT(score) as 'amount' FROM users GROUP BY score");
+$stmt = $pdo ->query("SELECT score, COUNT(score) as 'amount' FROM users GROUP BY score");
 
-$num = array();
-$leg = array();
-while($row = mysqli_fetch_object($result)){
-    array_push($num, intval($row->amount));
-    array_push($leg, intval($row->score));
+$leg = "";
+$num = "";
+foreach($stmt as $result){
+    $leg[] = $result['score'];
+    $num[] = $result['amount'];
 //  'colors' => array('#0000FF', '#6600FF', '#CC00FF', '#66CC00', '#FFCC00')
     
 }

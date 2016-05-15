@@ -6,13 +6,13 @@ include ("../../jpgraph/src/jpgraph_pie.php");
 
 //include connection script to database:
 include ("connection.php");
-$result = mysqli_query($dbc, "SELECT age, COUNT(age) as 'amount' FROM users GROUP BY age ORDER BY age DESC");
+$stmt = $pdo ->query("SELECT age, COUNT(age) as 'amount' FROM users GROUP BY age ORDER BY age DESC");
 
-$num = array();
-$leg = array();
-while($row = mysqli_fetch_object($result)){
-    array_push($num, intval($row->amount));
-    array_push($leg, $row->age);
+$leg = "";
+$num = "";
+foreach($stmt as $result){
+    $leg[] = $result['age'];
+    $num[] = $result['amount'];
 //  'colors' => array('#0000FF', '#6600FF', '#CC00FF', '#66CC00', '#FFCC00')
     
 }

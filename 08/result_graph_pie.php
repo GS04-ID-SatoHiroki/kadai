@@ -6,20 +6,20 @@ include ("../../jpgraph/src/jpgraph_pie.php");
 
 //include connection script to database:
 include ("connection.php");
-$result = $pdo ->query("SELECT gender, COUNT(gender) as 'amount' FROM users GROUP BY gender");
-$result ->execute();
+$stmt = $pdo ->query("SELECT gender, COUNT(gender) as 'amount' FROM users GROUP BY gender");
+$stmt ->execute();
 
-$num = array();
-$leg = array();
+$leg = "";
+$num = "";
 $colors = array('#8f004a', '#004a8f');
-while($row = $result ->fetchAll(PDO::FETCH_ASSOC)){
-    array_push($num, intval($row ->amount));
-    array_push($leg, $row ->gender);
+foreach($stmt as $result){
+    $leg[] = $result['gender'];
+    $num[] = $result['amount'];
 }
 $data = array("leg" => $leg, "num" => $num, "colors" => $colors);
-var_dump($data["num"]);
-var_dump($data["leg"]);
-var_dump($data["colors"]);die;
+//var_dump($data["leg"]);
+//var_dump($data["num"]);
+//var_dump($data["colors"]);die;
 
 //function dispKekka($var, $var_num){
 //    print('変数に格納されている値は'.$var.'です<br>');

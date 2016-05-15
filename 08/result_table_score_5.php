@@ -7,10 +7,10 @@ include ("connection.php");
 $q = "SELECT last_name, first_name,gender,age, score, comments, id FROM users WHERE score = 5 ORDER BY registration_date ASC";
 
 //query select all fields from table users:
-$r = mysqli_query($dbc, $q);
+$r = $pdo ->query($q);
 
 //Count the number of returned rows:
-$num = mysqli_num_rows($r);
+$num = $r ->rowCount();
 
 //If any rows returned, display records:
 if($num > 0 ){
@@ -33,7 +33,7 @@ if($num > 0 ){
     </tr>";
     
     //use while loop to create an associative array with values registration_date, lastname,firstaname
-    while($row = mysqli_fetch_array($r)){
+    while($row = $r ->fetch(PDO::FETCH_ASSOC)){
     
     echo "
     <tr>
@@ -54,7 +54,7 @@ if($num > 0 ){
     
 }
 
-mysqli_close($dbc);
+$pdo = null;
 
 ?>
 
