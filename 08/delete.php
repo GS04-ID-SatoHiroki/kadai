@@ -1,6 +1,7 @@
 <?php
 
 //avoid error notices, display only warnings:
+//http://php.net/manual/ja/function.error-reporting.php
 error_reporting(0);
 
 //check if user submitted form:
@@ -18,11 +19,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     
     $status = $del -> execute();
     
-    echo "ユーザー情報の削除に成功しました。";
+    //output_data.phpへリダイレクト
+    header("location: output_data.php");
+    exit;
     
 }else{
     
-    echo "ログインしてください。";
+//    ChromePhp::log("未接続");
+//    echo "ログインしてください。";
     
 }
 

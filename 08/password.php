@@ -1,5 +1,8 @@
 <?php
 
+//include ('ChromePhp.php');
+//ChromePhp::log("hello");
+
 //avoid error notices, display only warnings:
 error_reporting(0);
 
@@ -8,6 +11,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     
     //connect to database:
     include('connection.php');
+//    ChromePhp::log("接続成功");
     
     //Create an array for errors:
     $errors = array();
@@ -43,24 +47,28 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $stmt = $pdo ->prepare("SELECT id FROM users WHERE (email=:e AND password=:p)");
         $stmt ->bindValue(':e',$e, PDO::PARAM_STR);
         $stmt ->bindValue(':p',$p, PDO::PARAM_STR);
-        
+
         $status = $stmt ->execute();
         
-        $num = $pdo ->rowCount();
+        $num = $stmt ->rowCount();
+        ChromePhp::log($num);
         
         //get user id:
         if($num == 1){
-            $row = $stmt->fetch(PDO::FETCH_ASSOC);
-            
+            $row = $stmt ->fetch();
+            ChromePhp::log($row[0]);
             //Make the UPDATE query:
-            $update = $pdo->prepare("UPDATE users SET password='$np' WHERE id='$row[0]'");
+            $update = $pdo ->prepare("UPDATE users SET password=:np WHERE id='$row[0]'");
+            $update ->bindValue(':np',$np, PDO::PARAM_STR);
             
-            $status = $update ->execute();
+            $status1 = $update ->execute();
             
             //if everything was ok:
-            if($pdo ->rowCount() == 1){
+            if($update ->rowCount() == 1){
                 //Ok message confirmation:
-                echo "パスワードが変更されました。";
+                //output_data.phpへリダイレクト
+                header("location: output_data.php");
+                exit;
             }else{
                 echo "パスワードが変更できませんでした。";
             }
@@ -78,7 +86,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         }
     }
 }else{
-    
+//    ChromePhp::log("接続失敗");
     echo "ログインしてください。";
     
 }

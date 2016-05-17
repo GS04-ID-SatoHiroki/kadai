@@ -1,6 +1,9 @@
 <?php
 
+//include ("ChromePhp.php");
+
 //avoid error notices, display only warnings:
+//http://php.net/manual/ja/function.error-reporting.php
 error_reporting(0);
 
 //check if user submitted form:
@@ -8,7 +11,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     
     //connect to database:
     include('connection.php');
-
+//    ChromePhp::log("接続成功");
+    
     //get input user_id value from form:
     $id_user = $_POST["user_id"];
     $e_fname = $_POST['first_name'];
@@ -29,11 +33,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     
     $status = $update ->execute();
     
-    echo "ユーザー情報の変更に成功しました。";
+    //output_data.phpへリダイレクト
+    header("location: output_data.php");
+    exit;
     
 }else{
     
-    echo "ログインしてください。";
+//    ChromePhp::log("未接続");
+//    echo "ログインしてください。";
     
 }
 

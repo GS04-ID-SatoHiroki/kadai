@@ -44,7 +44,7 @@ if($num > 0 ){
     <tr>
     <td align='center'><a href='edit.php?user_id=".$row['id']."&fname=".$row['first_name']."&lname=".$row['last_name']."&email=".$row['email']."&score=".$row['score']."&comment=".$row['comments']."'>編集</a></td>
     <td align='center'><a href='delete.php?user_id=".$row['id']."&fname=".$row['first_name']."&lname=".$row['last_name']."&email=".$row['email']."'>削除</a></td>
-    <td align='center'>".$row['id']."</td>
+    <td align='center'><a href='detail.php?user_id=".$row['id']."&fname=".$row['first_name']."&lname=".$row['last_name']."&gender=".$row['gender']."&age=".$row['age']."&email=".$row['email']."&score=".$row['score']."&comment=".$row['comments']."'>".$row['id']."</a></td>
     <td align='center'>".$row['last_name'].",".$row['first_name']."</td>
     <td align='center'>".$row['gender']."</td>
     <td align='center'>".$row['age']."</td>
