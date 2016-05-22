@@ -1,0 +1,127 @@
+body {
+    margin: 0 auto;
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+}
+
+#time {
+    text-align: center;
+}
+
+table {
+    margin: 0 auto;
+    width: 75%;
+    border-collapse: separate;
+}
+
+th {
+    width: 100px;
+    padding: 20px 10px;
+    background: #295890;
+    text-align: center;
+    color: #fff;
+    font-weight: normal;
+}
+
+td {
+    width: 100px;
+    text-align: center;
+    background: #f8f8f8;
+}
+
+div {
+    text-align: center;
+}
+
+* input reset */ input {
+    padding: 0;
+    background-color: none;
+    border: 0;
+}
+
+
+/*テキストエリア*/
+
+input[type="text"] {
+    padding: 0;
+    width: 200px;
+    height: 30px;
+    border: 1px solid #ccc;
+    line-height: 30px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+input[type="password"] {
+    padding: 0;
+    width: 200px;
+    height: 30px;
+    border: 1px solid #ccc;
+    line-height: 30px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+/*送信ボタン*/
+
+input[type="submit"] {
+    background: #004a8f;
+    font-size: 20px;
+    color: #fff;
+    width: 80px;
+    height: 40px;
+    border: 0;
+    margin: 20px 0 ;
+    line-height: 30px;
+    -webkit-border-radius: 10px;
+}
+
+input[type="submit"]:hover {
+    background: #8f004a;
+    color: #fff;
+    border: 0;
+    cursor: pointer;
+    -webkit-border-radius: 10px;
+}
+
+input[type="submit"][disabled] {
+    background: #cdcdcd;
+    cursor: default;
+    -webkit-border-radius: 10px;
+}
+
+input[type="submit"][disabled]:hover {
+    background: #cdcdcd;
+    -webkit-border-radius: 10px;
+}
+
+
+/*checkボタン*/
+.check{
+    background-color: white;
+}
+
+.button {
+    text-align: center;
+    color: #fff;
+    width: 55px;
+    height: 30px;
+    padding: 0;
+    border: 0;
+    line-height: 30px;
+    -webkit-border-radius: 10px;
+}
+
+#check_clear {
+    background: #004a8f;
+}
+
+#check_error {
+    background: #8f004a;
+}

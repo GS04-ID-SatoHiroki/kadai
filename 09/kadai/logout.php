@@ -1,5 +1,6 @@
 <?php
 //必ずsession_startは最初に記述
+//session_set_cookie_params(1000,'/~kadai/', $secure=true, $httponly=true);
 session_start();
 
 //SESSIONを初期化（空っぽにする）

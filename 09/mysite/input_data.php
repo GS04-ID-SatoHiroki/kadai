@@ -1,8 +1,5 @@
 <?php //CRUD - Create, Read, Update and DELETE
 
-session_start();
-include("session.php");
-
 //include ("ChromePhp.php");
 include ("navibar.php");
 

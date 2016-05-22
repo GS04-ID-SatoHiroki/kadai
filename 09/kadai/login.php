@@ -10,8 +10,8 @@ include("html_start.php");
   <nav class="navbar navbar-default">LOGIN</nav>
 </header>
 <form name="form1" action="login_act.php" method="post">
-ID:<input type="text" name="lid" />
-PW:<input type="password" name="lpw" />
+<p>ID:<input type="text" name="lid" /></p>
+<p>PW:<input type="password" name="lpw" /></p>
 <input type="submit" value="LOGIN" />
 </form>
 

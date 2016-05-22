@@ -3,6 +3,7 @@
  *  ログイン認証OKの場合表示
  ************************************************************/
 //1. SESSION開始
+//session_set_cookie_params(1000,'/~kadai/', $secure=true, $httponly=true);
 session_start();
 include("func.php");
 
@@ -10,18 +11,18 @@ include("func.php");
 sessionCheck(); //func.php
 
 //3. 管理者FLGを表示
-$admin = loginRollSet();//func.php
+$name = loginRollSet()[0];//func.php
+$admin = loginRollSet()[1];//func.php
 
 //1.  DB接続します
 $pdo = db();//func.php
 
 //２．データ登録SQL作成
-$stmt = $pdo->prepare("SELECT * FROM gs_an_table");
+$stmt = $pdo->prepare("SELECT * FROM gs_user_table");
 $status = $stmt->execute();
 
 //３データ表示
-$name = "<p>名前： " . $_SESSION["name"] . "</p>";
-$view="";
+$view="<table><tr><td>ID</td><td>名前</td><td>email</td></tr>";
 if($status==false){
   //execute（SQL実行時にエラーがある場合）
   $error = $stmt->errorInfo();
@@ -30,38 +31,31 @@ if($status==false){
   //Selectデータの数だけ自動でループしてくれる
   while( $result = $stmt->fetch(PDO::FETCH_ASSOC) ){
     //管理FLGで表示を切り分けたりしてみましょう！！！（追加してください！）
-    $view .= '<p><a href="detail.php?id='.$result["id"].'">'.$result["name"]." : ".$result["email"].'</a></p>';
-  }
+    $view .= '<tr><td><a href="detail.php?id='.$result["id"].'">'.$result["id"].'</a></td><td>'.$result["name"].'</td><td>'.$result["email"].'</td></tr>';
+    }
+  $view .= '</table>';
 }
 ?>
 
+<?php
+//HTML_STARTをインクルード
+$title = "アンケートフォーム"; //html_start.phpのtitleタグに表示
+include("html_start.php");
+?>
 
-
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>フリーアンケート表示</title>
-<link rel="stylesheet" href="css/main.css">
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<style>div{padding: 10px;font-size:16px;}</style>
-</head>
-<body id="main">
 <!-- Head[Start] -->
 <header>
   <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
-        <a class="navbar-brand" href="index.php">データ登録</a>
+        <a class="navbar-brand" href="index.php">データ一覧</a>
         <a class="navbar-brand" href="logout.php">ログアウト</a>
         <p>
             <?=$name?>
         </p>
         <p>
             <?=$admin?>
-        </p>
+            </p>
       </div>
     </div>
   </nav>
@@ -70,10 +64,15 @@ if($status==false){
 
 <!-- Main[Start] -->
 <div>
-    <div class="container jumbotron"><?=$view?></div>
+    <div class="container jumbotron">
+    <?=$view?>
+    </table>
+    </div>
   </div>
 </div>
 <!-- Main[End] -->
 
-</body>
-</html>
+<?php
+//HTML_ENDをインクルード
+include("html_end.php");
+?>

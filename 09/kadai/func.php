@@ -11,7 +11,9 @@ function db(){
 //セッションチェック用関数
 function sessionCheck(){
   if( !isset($_SESSION["chk_ssid"]) || ($_SESSION["chk_ssid"] != session_id()) ){
-    echo "LOGIN ERROR";
+    echo "LOGIN ERROR<br>3秒後に自動的にログイン画面に移動します。";
+    //処理後、3秒後にindex.phpへリダイレクト
+    header("Refresh:3; url=login.php");
     exit();
   }else{
     session_regenerate_id(true);
@@ -22,12 +24,14 @@ function sessionCheck(){
 //ログイン時のセッションへの情報セット
 function loginRollSet(){
   if( $_SESSION["kanri_flg"]==1 ) {
+    $name   =  "<p>名前：" . $_SESSION["name"] . "</p>";
     $admin  =  "<p>権限：管理者</p>";
     $admin .=  '<p><a href="#">管理者メニュー</a></p>';
   }else if( $_SESSION["kanri_flg"]==0 ){
-    $admin = "<p>権限：一般</p>";
+    $name   =  "<p>名前：" . $_SESSION["name"] . "</p>";
+    $admin  =  "<p>権限：一般</p>";
   }
-  return $admin;
+  return [$name,$admin];
 }
 
 //HTML XSS対策

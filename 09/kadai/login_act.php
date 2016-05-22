@@ -1,4 +1,5 @@
 <?php
+//session_set_cookie_params(1000,'/~kadai/', $secure=true, $httponly=true);
 session_start();
 include('func.php'); //外部ファイル読み込み（関数群の予定）
 
@@ -33,8 +34,6 @@ if( $val["id"] != "" ){
 }
 
 exit();
-
-
 
 ?>
 
